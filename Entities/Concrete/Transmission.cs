@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Fuel:Entity<int>
+    public class Transmission:Entity<int>
     {
         public string Name { get; set; }
-        public Fuel() { }
-        public Fuel(string name) {
+
+        public Transmission() { }
+        public Transmission(string name)
+        {
             Name = name;
         }
     }
