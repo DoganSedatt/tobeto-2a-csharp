@@ -7,7 +7,7 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
     where TEntity : class, IEntity<TEntityId>, new()
 {
     protected readonly HashSet<TEntity> _entities = new();
-
+    //Benzersiz veriler için HasSet.Bir defa eklediğini bir daha eklemez
     protected abstract TEntityId generateId();
 
     public void Add(TEntity entity)

@@ -1,7 +1,9 @@
 ﻿using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
+using Core.DataAccess.Ef;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -19,16 +21,19 @@ public static class ServiceCollectionBusinessExtension
             .AddSingleton<IBrandService, BrandManager>()
             .AddSingleton<IFuelService, FuelManager>()
             .AddSingleton<ITransmissionService, TransmissionManager>()
+            .AddSingleton<ICarService, CarManager>()
             //MANAGERS
 
             .AddSingleton<IBrandDal, InMemoryBrandDal>()
             .AddSingleton<IFuelDal, InMemoryFuelDal>()
             .AddSingleton<ITransmissionDal, InMemoryTransmissionDal>()
+            .AddSingleton<ICarDal, EfCarDal>()
             //INMEMORYS
 
             .AddSingleton<BrandBusinessRules>()
             .AddSingleton<FuelBusinnesRules>()
-            .AddSingleton<TransmissionBusinnesRules>();
+            .AddSingleton<TransmissionBusinnesRules>()
+            .AddSingleton<CarBusinnesRules>();
         // Fluent
         // Singleton: Tek bir nesne oluşturur ve herkese onu verir.
         // Ek ödev diğer yöntemleri araştırınız.
