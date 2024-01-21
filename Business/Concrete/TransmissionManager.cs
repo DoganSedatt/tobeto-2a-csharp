@@ -20,10 +20,7 @@ namespace Business.Concrete
         private readonly ITransmissionDal _transmissionDal;
         private readonly TransmissionBusinnesRules _transmissionBusinnesRules;
         private readonly IMapper _mapper;
-        public TransmissionManager()
-        {
-
-        }
+       
         public TransmissionManager(ITransmissionDal transmissionDal, TransmissionBusinnesRules transmissionBusinnesRules, IMapper mapper)
         {
             _transmissionDal = transmissionDal;
@@ -39,10 +36,12 @@ namespace Business.Concrete
             return response;
         }
 
-        public IList<Transmission> GetList()
+        public GetTransmissionListResponse GetList(GetTransmissionListRequest request)
         {
             IList<Transmission> transmissionList = _transmissionDal.GetList();
-            return transmissionList;
+
+            GetTransmissionListResponse response = _mapper.Map<GetTransmissionListResponse>(transmissionList); // Mapping
+            return response;
         }
     }
 }

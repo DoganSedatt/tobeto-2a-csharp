@@ -19,9 +19,7 @@ namespace Business.Concrete
         private readonly FuelBusinnesRules _fuelBusinnesRules;
         private readonly IMapper _mapper;
 
-        public FuelManager(IFuelDal fuelDal)
-        {
-        }
+       
 
         public FuelManager(IFuelDal fuelDal,FuelBusinnesRules fuelBusinnesRules,IMapper mapper)
         {
@@ -38,16 +36,13 @@ namespace Business.Concrete
             AddFuelResponse response = _mapper.Map<AddFuelResponse>(fuelToAdd);
             return response;
         }
-        public IList<Fuel> GetList()
+        
+        public GetFuelListResponse GetList(GetFuelListRequest request)
         {
-            // İş Kuralları
-            // Validation
-            // Yetki kontrolü
-            // Cache
-            // Transaction
-
             IList<Fuel> fuelList = _fuelDal.GetList();
-            return fuelList;
+
+            GetFuelListResponse response = _mapper.Map<GetFuelListResponse>(fuelList); // Mapping
+            return response;
         }
     }
 }

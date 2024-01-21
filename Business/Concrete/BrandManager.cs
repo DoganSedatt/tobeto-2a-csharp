@@ -40,15 +40,13 @@ public class BrandManager : IBrandService
         return response;
     }
 
-    public IList<Brand> GetList()
-    {
-        // İş Kuralları
-        // Validation
-        // Yetki kontrolü
-        // Cache
-        // Transaction
+    
 
+    public GetBrandListResponse GetList(GetBrandListRequest request)
+    {
         IList<Brand> brandList = _brandDal.GetList();
-        return brandList;
+
+        GetBrandListResponse response = _mapper.Map<GetBrandListResponse>(brandList); // Mapping
+        return response;
     }
 }

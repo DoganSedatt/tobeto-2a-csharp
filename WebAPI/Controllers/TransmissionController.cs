@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using Business;
+using Business.Abstract;
 using Business.Concrete;
 using Business.Requests.Transmission;
 using Business.Responses.Transmission;
@@ -16,10 +17,10 @@ public class TransmissionController : ControllerBase
 {
     private readonly ITransmissionService _transmissionService; // Field
 
-    public TransmissionController()
+    public TransmissionController(ITransmissionService transmissionService)
     {
         // Her HTTP Request için yeni bir Controller nesnesi oluşturulur.
-        _transmissionService = ServiceRegistration.TransmissionService;
+        _transmissionService = transmissionService;
         // Daha sonra IoC Container yapımızı kurduğumuz Dependency Injection ile daha verimli hale getiricez.
     }
 
@@ -31,10 +32,10 @@ public class TransmissionController : ControllerBase
     //}
 
     [HttpGet] // GET http://localhost:5245/api/brands
-    public ICollection<Transmission> GetList()
+    public GetTransmissionListResponse GetList([FromQuery] GetTransmissionListRequest request) // Referans tipleri varsayılan olarak request body'den alır.
     {
-        IList<Transmission> transmissionList = _transmissionService.GetList();
-        return transmissionList; // JSON
+        GetTransmissionListResponse response = _transmissionService.GetList(request);
+        return response; // JSON
     }
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add

@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using Business;
+using Business.Abstract;
 using Business.Concrete;
 using Business.Requests.Fuel;
 using Business.Responses.Fuel;
@@ -16,10 +17,10 @@ public class FuelController : ControllerBase
 {
     private readonly IFuelService _fuelService; // Field
 
-    public FuelController()
+    public FuelController(IFuelService fuelService)
     {
         // Her HTTP Request için yeni bir Controller nesnesi oluşturulur.
-        _fuelService = ServiceRegistration.FuelService;
+        _fuelService = fuelService;
         // Daha sonra IoC Container yapımızı kurduğumuz Dependency Injection ile daha verimli hale getiricez.
     }
 
@@ -31,10 +32,10 @@ public class FuelController : ControllerBase
     //}
 
     [HttpGet] // GET http://localhost:5245/api/brands
-    public ICollection<Fuel> GetList()
+    public GetFuelListResponse GetList([FromQuery] GetFuelListRequest request) // Referans tipleri varsayılan olarak request body'den alır.
     {
-        IList<Fuel> fuelList = _fuelService.GetList();
-        return fuelList; // JSON
+        GetFuelListResponse response = _fuelService.GetList(request);
+        return response; // JSON
     }
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
