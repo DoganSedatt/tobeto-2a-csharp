@@ -16,11 +16,18 @@ namespace Business.BusinessRules
         }
         public void CheckModelAdded(string modelName,int dailyPrice)
         {
-            bool isExists = _modelDal.GetList().Any(m => m.ModelName.Length < 2 || m.DailyPrice <= 0);
+            bool isExists = _modelDal.GetList().Any(m => m.ModelName==modelName);
+            bool isLenght =  modelName.Length <= 2 || dailyPrice<=0;
+            
             if (isExists)
             {
-                throw new Exception("Model eklenme şartlarını karşılamadı");
+                throw new Exception("Model daha önce eklenmiş");
             }
+            else if (isLenght)
+            {
+                throw new Exception("islength");
+            }
+
         }
     }
 }
