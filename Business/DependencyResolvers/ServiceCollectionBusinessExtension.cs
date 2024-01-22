@@ -22,18 +22,22 @@ public static class ServiceCollectionBusinessExtension
             .AddSingleton<IFuelService, FuelManager>()
             .AddSingleton<ITransmissionService, TransmissionManager>()
             .AddSingleton<ICarService, CarManager>()
+            .AddSingleton<IModelService,ModelManager>()
             //MANAGERS
 
             .AddSingleton<IBrandDal, InMemoryBrandDal>()
             .AddSingleton<IFuelDal, InMemoryFuelDal>()
             .AddSingleton<ITransmissionDal, InMemoryTransmissionDal>()
             .AddSingleton<ICarDal, EfCarDal>()
+            .AddSingleton<IModelDal,EfModelDal>()
             //INMEMORYS
 
             .AddSingleton<BrandBusinessRules>()
             .AddSingleton<FuelBusinnesRules>()
             .AddSingleton<TransmissionBusinnesRules>()
-            .AddSingleton<CarBusinnesRules>();
+            .AddSingleton<CarBusinnesRules>()
+            .AddSingleton<ModelBusinnesRules>()
+            ;
         // Fluent
         // Singleton: Tek bir nesne oluşturur ve herkese onu verir.
         // Ek ödev diğer yöntemleri araştırınız.

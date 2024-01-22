@@ -10,4 +10,7 @@ public interface IModelDal : IEntityRepository<Model, int>
     //public void Add(Model entity);
     //public void Update(Model entity);
     //public void Delete(Model entity);
+
+    //Modele özel operasyonları buraya yazıyorum
+
 }
